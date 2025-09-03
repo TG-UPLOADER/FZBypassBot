@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.bypass_ddl import *
 from FZBypass.core.bypass_scrape import *
+from FZBypass.core.bypass_enhanced import *
 from FZBypass.core.bot_utils import get_dl
 from FZBypass.core.exceptions import DDLException
 
@@ -40,6 +41,19 @@ def is_excep_link(url):
 
 
 async def direct_link_checker(link, onlylink=False):
+    """Enhanced direct link checker with improved error handling and performance"""
+    try:
+        # First try the enhanced bypass system
+        result = await direct_link_checker_enhanced(link)
+        if result and await validate_bypass_result(link, result):
+            if onlylink:
+                return result
+            return await smart_loop_bypass(link)
+    except DDLException:
+        # Fall back to original system if enhanced fails
+        pass
+    
+    # Original bypass logic as fallback
     domain = urlparse(link).hostname
 
     # File Hoster Links

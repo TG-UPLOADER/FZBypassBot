@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  fzbypass-bot:
+    build: .
+    container_name: fzbypass-bot
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - AUTH_CHATS=${AUTH_CHATS}
+      - AUTO_BYPASS=${AUTO_BYPASS:-False}
+      - OWNER_ID=${OWNER_ID}
+      - LARAVEL_SESSION=${LARAVEL_SESSION}
+      - XSRF_TOKEN=${XSRF_TOKEN}
+      - GDTOT_CRYPT=${GDTOT_CRYPT}
+      - HUBDRIVE_CRYPT=${HUBDRIVE_CRYPT}
+      - DRIVEFIRE_CRYPT=${DRIVEFIRE_CRYPT}
+      - KATDRIVE_CRYPT=${KATDRIVE_CRYPT}
+      - DIRECT_INDEX=${DIRECT_INDEX}
+      - TERA_COOKIE=${TERA_COOKIE}
+      - UPSTREAM_REPO=${UPSTREAM_REPO:-https://github.com/SilentDemonSD/FZBypassBot}
+      - UPSTREAM_BRANCH=${UPSTREAM_BRANCH:-main}
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    networks:
+      - fzbypass-network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  fzbypass-network:
+    driver: bridge
+
+volumes:
+  logs:
+  config:

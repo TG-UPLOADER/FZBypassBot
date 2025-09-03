@@ -12,6 +12,7 @@ from pyrogram.errors import QueryIdInvalid
 
 from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
+from FZBypass.core.bypass_enhanced import batch_bypass, get_file_info
 from FZBypass.core.bot_utils import AuthChatsTopics, convert_time, BypassFilter
 
 
@@ -58,7 +59,8 @@ async def bypass_check(client, message):
     start = time()
 
     link, tlinks, no = "", [], 0
-    atasks = []
+    
+    # Extract all links first
     for enty in entities:
         if enty.type == MessageEntityType.URL:
             link = txt[enty.offset : (enty.offset + enty.length)]
@@ -68,10 +70,14 @@ async def bypass_check(client, message):
         if link:
             no += 1
             tlinks.append(link)
-            atasks.append(create_task(direct_link_checker(link)))
             link = ""
 
-    completed_tasks = await gather(*atasks, return_exceptions=True)
+    # Use enhanced batch processing
+    if len(tlinks) > 1:
+        await wait_msg.edit(f"<i>Processing {len(tlinks)} links...</i>")
+        completed_tasks = await batch_bypass(tlinks)
+    else:
+        completed_tasks = [await direct_link_checker(tlinks[0])] if tlinks else []
 
     parse_data = []
     for result, link in zip(completed_tasks, tlinks):
@@ -131,7 +137,8 @@ async def inline_query(client, query):
         link = string.strip("!bp ")
         start = time()
         try:
-            bp_link = await direct_link_checker(link, True)
+            # Use enhanced bypass for inline queries
+            bp_link = await single_bypass(link)
             end = time()
 
             if not is_excep_link(link):

@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: fzbypass-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: API_ID
+        sync: false
+      - key: AUTH_CHATS
+        sync: false
+      - key: AUTO_BYPASS
+        value: "False"
+      - key: OWNER_ID
+        sync: false
+      - key: LARAVEL_SESSION
+        sync: false
+      - key: XSRF_TOKEN
+        sync: false
+      - key: GDTOT_CRYPT
+        sync: false
+      - key: HUBDRIVE_CRYPT
+        sync: false
+      - key: DRIVEFIRE_CRYPT
+        sync: false
+      - key: KATDRIVE_CRYPT
+        sync: false
+      - key: DIRECT_INDEX
+        sync: false
+      - key: TERA_COOKIE
+        sync: false
+      - key: UPSTREAM_REPO
+        value: "https://github.com/SilentDemonSD/FZBypassBot"
+      - key: UPSTREAM_BRANCH
+        value: "main"

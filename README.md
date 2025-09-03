@@ -27,11 +27,16 @@
 
 ## ***Features***
 - _Fastest written in Async with Speed Enhancers_
+- _Enhanced Bypass System with Smart Loop Detection_
+- _Batch Processing for Multiple Links_
+- _Advanced Error Handling and Retry Mechanisms_
 - _LoopBypass V1 (Auto Bypass Nested Shorteners)_
 - _Build with Simultaneously Bypass Method_
 - _Supported for Authorized Chats & Topics_
 - _Added Support for Inline Bypass ( Use anytime anywhere)_
   > **Enable:** BotFather -> Bot Settings -> Inline Mode (Turn On)
+- _Health Check and Statistics Commands_
+- _Comprehensive Logging and Monitoring_
 
 ---
 
@@ -174,12 +179,26 @@
 
 ## ***Deploy Guide***
 1. `Heroku` or `Koyeb` or `Render` or `Scalingo` or _**More**_ _(Recommended)_
+
+### ***Render Deployment***
+1. Fork this repository to your GitHub account
+2. Create a new Web Service on [Render](https://render.com)
+3. Connect your GitHub repository
+4. Use the following settings:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `bash start.sh`
+   - **Environment:** `Python 3`
+5. Add all required environment variables from `sample_config.env`
+6. Deploy the service
+
+### ***Alternative Deployment Methods***
+1. `Heroku` or `Koyeb` or `Scalingo` _(Using pyTele-Loader)_
     - Use [pyTele-Loader](https://github.com/SilentDemonSD/pyTele-Loader) and Follow further Steps.
     - **Variables Values:**
       - `REPO_URL`: https://github.com/SilentDemonSD/FZBypassBot
       - `REPO_BRANCH`: main
       - `START_CMD`: bash start.sh
-2. `VPS`
+2. `VPS` _(Docker Deployment)_
     - **Build And Run The Docker Image Using Official Docker Commands**
         - _Clone the Repository_
             ```

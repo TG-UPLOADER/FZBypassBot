@@ -1,0 +1,30 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "bash start.sh"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[env]
+BOT_TOKEN = { $ref = "BOT_TOKEN" }
+API_ID = { $ref = "API_ID" }
+API_HASH = { $ref = "API_HASH" }
+AUTH_CHATS = { $ref = "AUTH_CHATS" }
+AUTO_BYPASS = { $ref = "AUTO_BYPASS", default = "False" }
+OWNER_ID = { $ref = "OWNER_ID" }
+LARAVEL_SESSION = { $ref = "LARAVEL_SESSION" }
+XSRF_TOKEN = { $ref = "XSRF_TOKEN" }
+GDTOT_CRYPT = { $ref = "GDTOT_CRYPT" }
+HUBDRIVE_CRYPT = { $ref = "HUBDRIVE_CRYPT" }
+DRIVEFIRE_CRYPT = { $ref = "DRIVEFIRE_CRYPT" }
+KATDRIVE_CRYPT = { $ref = "KATDRIVE_CRYPT" }
+DIRECT_INDEX = { $ref = "DIRECT_INDEX" }
+TERA_COOKIE = { $ref = "TERA_COOKIE" }
+UPSTREAM_REPO = { $ref = "UPSTREAM_REPO", default = "https://github.com/SilentDemonSD/FZBypassBot" }
+UPSTREAM_BRANCH = { $ref = "UPSTREAM_BRANCH", default = "main" }
+
+[healthcheck]
+path = "/health"
+timeout = 30
+interval = 60
