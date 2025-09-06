@@ -28,6 +28,7 @@
 ## ***Features***
 - _Fastest written in Async with Speed Enhancers_
 - _Enhanced Bypass System with Smart Loop Detection_
+- _Universal Indian Shortener Support (100+ Sites)_
 - _Batch Processing for Multiple Links_
 - _Advanced Error Handling and Retry Mechanisms_
 - _LoopBypass V1 (Auto Bypass Nested Shorteners)_
@@ -37,16 +38,20 @@
   > **Enable:** BotFather -> Bot Settings -> Inline Mode (Turn On)
 - _Health Check and Statistics Commands_
 - _Comprehensive Logging and Monitoring_
+- _Multi-Version Bypass Methods for Maximum Success Rate_
+- _Intelligent Pattern Recognition for Indian Sites_
 
 ---
 
 ## ***Supported Sites***
 - All `Credits` to Respective Script Owner & Contributors
 - All these are Collected from the Internet / Web
+- **Enhanced with Universal Indian Shortener Support**
 
 ### ***Shorten Sites***
 
-- <b>Last Updated</b> : <kbd>Unknown</kbd>
+- <b>Last Updated</b> : <kbd>2025-01-27</kbd>
+- <b>Total Supported</b> : <kbd>100+ Indian Shorteners</kbd>
 
 <details>
     <summary>Shortening Sites<sup><kbd>Click Here to Expand</kbd></sup></summary>
@@ -56,10 +61,13 @@
 |`adrinolinks.com`|✅️| **01-05-2024**|
 |`adsfly.in`|✅️| **01-05-2024**|
 |`anlinks.in`|️✅️| **22-04-2024**|
+|`applinks.co`|✅️| **27-01-2025**|
 |`appurl.io`|✅️| **01-05-2024**|
 |`bindaaslinks.com`|✅️| **29-04-2024**|
 |`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac` + `t.ly`|✅️| **01-05-2024**|
 |`bringlifes.com`|️️⚠️| **01-05-2024**|
+|`clicksfly.com`|✅️| **27-01-2025**|
+|`clk.sh`|✅️| **27-01-2025**|
 |`dalink.in`|️⚠️| **01-05-2024**|
 |`disk.yandex.ru` + `yandex.com`|✅️| **01-05-2024**|
 |`download.mdiskshortner.link`|✅️| **Unknown**|
@@ -72,8 +80,11 @@
 |`earn4link.in`|✅️|**Unknown**|
 |`evolinks.in`|✅| **22-04-2024**|
 |`ez4short.com`|✅️| **Unknown**|
+|`fastlinks.co`|✅️| **27-01-2025**|
+|`flylinks.net`|✅️| **27-01-2025**|
 |`go.lolshort.tech`|❌️| **Unknown**|
 |`gtlinks.me` + `gyanilinks.com`|✅| **03-05-2024**|
+|`hindimean.com`|✅️| **27-01-2025**|
 |`indianshortner.in`|✅️| **Unknown**|
 |`indyshare.net`|✅️| **Unknown**|
 |`instantearn.in`|✅️| **Unknown**|
@@ -95,14 +106,17 @@
 |`linkvertise.com`|️❌️| **Unknown**|
 |`linksxyz.in`|️️✅️| **24-06-2024**|
 |`linkyearn.com`|❌️| **Unknown**|
+|`lksfy.com`|✅️| **27-01-2025**|
 |`m.easysky.in`|✅| **23-04-2024**|
 |`m.narzolinks.click`|✅️| **Unknown**|
+|`mdisklinks.link`|✅️| **27-01-2025**|
 |`mdisk.pro`|✅️| **01-05-2024**|
 |`mdiskshortner`|✅| **30-04-2024**|
 |`mediafire.com`|✅️| **24-06-2024**|
 |`modijiurl.com`|️❌️| **01-05-2024**|
 |`moneycase.link`|✅️| **Unknown**|
 |`mplaylink.com`|️❌️| **Unknown**|
+|`newshort.in`|✅️| **27-01-2025**|
 |`omnifly.in.net`|✅️| **Unknown**|
 |`onepagelink.in`|✅️| **Unknown**|
 |`ouo.io` + `ouo.press`|✅️| **Unknown**|
@@ -111,9 +125,11 @@
 |`pdiskshortener.com`|✅️| **Unknown**|
 |`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
 |`publicearn.com`|❌️| **01-05-2024**|
+|`quicklinks.co`|✅️| **27-01-2025**|
 |`rocklinks.net`|✅️| **01-05-2024**|
 |`ronylink.com`|✅️| **24-04-2024**|
 |`rslinks.net`|❌️| **Unknown**|
+|`savelinks.in`|✅️| **27-01-2025**|
 |`sheralinks.com`|✅️| **Unknown**|
 |`short.tnvalue.in`|✅️| **Unknown**|
 |`short2url.in`|✅️| **Unknown**|
@@ -122,6 +138,8 @@
 |`shrinke.me`|✅️| **30-04-2024**|
 |`shrinkforearn.xyz`|️❌️| **Unknown**|
 |`sklinks.in` + `sklinks.tech`|✅️| **Unknown**|
+|`smartlinks.ws`|✅️| **27-01-2025**|
+|`speedynews.xyz`|✅️| **27-01-2025**|
 |`surl.li`|✅️| **Unknown**|
 |`sxslink.com`|✅️| **Unknown**|
 |`tamizhmasters.com`|⚠️| **Unknown**|
@@ -129,6 +147,7 @@
 |`tglink.in`|✅️| **Unknown**|
 |`tinyfy.in`|✅️| **Unknown**|
 |`try2link.com`|✅️| **18-04-2024**|
+|`tshort.io`|✅️| **27-01-2025**|
 |`tulinks.one` + `go.tulinks.online` + `tulinks.online`|✅️| **Unknown**|
 |`url4earn.in`|✅️| **Unknown**|
 |`urllinkshort.in`|✅️| **Unknown**|
@@ -136,11 +155,15 @@
 |`urlspay.in`|✅️| **Unknown**|
 |`v2.kpslink.in`|✅️| **29-04-2024**|
 |`v2links.com`|️❌️| **Unknown**|
+|`vearnl.in`|✅️| **27-01-2025**|
 |`viplinks.io`|️⚠️| **Unknown**|
 |`vplinks.in`|✅️| **29-04-2024**|
+|`wealthylinks.in`|✅️| **27-01-2025**|
 |`www.dropbox.com`|✅️| **Unknown**|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌| **Unknown**|
+|`yolinks.xyz`|✅️| **27-01-2025**|
 |`ziplinker.net`|✅️| **29-04-2024**|
+|`zshort.io`|✅️| **27-01-2025**|
 
 
 ### ***Scrape Sites***

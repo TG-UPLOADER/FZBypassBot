@@ -13,6 +13,7 @@ from pyrogram.errors import QueryIdInvalid
 from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
 from FZBypass.core.bypass_enhanced import batch_bypass, get_file_info
+from FZBypass.core.bypass_indian import indian_shortener_bypass
 from FZBypass.core.bot_utils import AuthChatsTopics, convert_time, BypassFilter
 
 
@@ -75,9 +76,27 @@ async def bypass_check(client, message):
     # Use enhanced batch processing
     if len(tlinks) > 1:
         await wait_msg.edit(f"<i>Processing {len(tlinks)} links...</i>")
-        completed_tasks = await batch_bypass(tlinks)
+        # Try Indian shortener bypass first for batch processing
+        completed_tasks = []
+        for link in tlinks:
+            try:
+                result = await indian_shortener_bypass(link)
+                completed_tasks.append(result)
+            except:
+                try:
+                    result = await direct_link_checker(link)
+                    completed_tasks.append(result)
+                except Exception as e:
+                    completed_tasks.append(e)
     else:
-        completed_tasks = [await direct_link_checker(tlinks[0])] if tlinks else []
+        if tlinks:
+            try:
+                result = await indian_shortener_bypass(tlinks[0])
+                completed_tasks = [result]
+            except:
+                completed_tasks = [await direct_link_checker(tlinks[0])]
+        else:
+            completed_tasks = []
 
     parse_data = []
     for result, link in zip(completed_tasks, tlinks):
@@ -138,7 +157,10 @@ async def inline_query(client, query):
         start = time()
         try:
             # Use enhanced bypass for inline queries
-            bp_link = await single_bypass(link)
+            try:
+                bp_link = await indian_shortener_bypass(link)
+            except:
+                bp_link = await direct_link_checker(link, onlylink=True)
             end = time()
 
             if not is_excep_link(link):
