@@ -45,7 +45,7 @@ def is_excep_link(url):
 
 async def direct_link_checker(link, onlylink=False):
     """Enhanced direct link checker with improved error handling and performance"""
-    
+
     # First try TrueLink for supported services
     truelink = get_truelink_bypass()
     if truelink and truelink.is_supported(link):
@@ -60,7 +60,7 @@ async def direct_link_checker(link, onlylink=False):
         except Exception as e:
             LOGGER.error(f"TrueLink unexpected error for {link}: {e}")
             # Continue to other bypass methods
-    
+
     try:
         # First try Indian shortener bypass
         result = await indian_shortener_bypass(link)
@@ -71,7 +71,7 @@ async def direct_link_checker(link, onlylink=False):
     except DDLException:
         # Continue to other bypass methods if Indian shortener fails
         pass
-    
+
     try:
         # First try the enhanced bypass system
         result = await direct_link_checker_enhanced(link)
@@ -82,7 +82,7 @@ async def direct_link_checker(link, onlylink=False):
     except DDLException:
         # Fall back to original system if enhanced fails
         pass
-    
+
     # Original bypass logic as fallback
     domain = urlparse(link).hostname
 
@@ -114,13 +114,13 @@ async def direct_link_checker(link, onlylink=False):
         blink = await try2link(link)
     elif bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         blink = await gyanilinks(link)
-    
+
     # Try Indian shortener bypass as fallback
     try:
         blink = await indian_shortener_bypass(link)
     except DDLException:
         pass
-    
+
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         blink = await ouo(link)
     elif bool(match(r"https?:\/\/(shareus|shrs)\.\S+", link)):
@@ -185,6 +185,7 @@ async def direct_link_checker(link, onlylink=False):
             f"<i>No Bypass Function Found for your Link :</i> <code>{link}</code>"
         )
 
+    # ← dedented here
     if onlylink:
         return blink
 
