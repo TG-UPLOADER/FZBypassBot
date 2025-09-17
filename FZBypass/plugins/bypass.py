@@ -14,6 +14,7 @@ from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
 from FZBypass.core.bypass_enhanced import batch_bypass, get_file_info
 from FZBypass.core.bypass_indian import indian_shortener_bypass
+from FZBypass.core.bypass_truelink import get_truelink_bypass
 from FZBypass.core.bot_utils import AuthChatsTopics, convert_time, BypassFilter
 
 
@@ -76,23 +77,56 @@ async def bypass_check(client, message):
     # Use enhanced batch processing
     if len(tlinks) > 1:
         await wait_msg.edit(f"<i>Processing {len(tlinks)} links...</i>")
-        # Try Indian shortener bypass first for batch processing
+        
+        # Enhanced batch processing with TrueLink and Indian shortener priority
         completed_tasks = []
         for link in tlinks:
             try:
-                result = await indian_shortener_bypass(link)
-                completed_tasks.append(result)
-            except:
+                # Try TrueLink first for file hosting services
+                truelink = get_truelink_bypass()
+                if truelink and truelink.is_supported(link):
+                    try:
+                        result = await truelink.resolve(link)
+                        completed_tasks.append(result.get('formatted_output', str(result)))
+                        continue
+                    except Exception:
+                        pass
+                
+                # Try Indian shortener bypass
                 try:
+                    result = await indian_shortener_bypass(link)
+                    completed_tasks.append(result)
+                except:
+                    # Fallback to general bypass
                     result = await direct_link_checker(link)
                     completed_tasks.append(result)
-                except Exception as e:
-                    completed_tasks.append(e)
+            except:
+                completed_tasks.append(Exception(f"All bypass methods failed for: {link}"))
     else:
         if tlinks:
             try:
-                result = await indian_shortener_bypass(tlinks[0])
-                completed_tasks = [result]
+                link = tlinks[0]
+                
+                # Try TrueLink first
+                truelink = get_truelink_bypass()
+                if truelink and truelink.is_supported(link):
+                    try:
+                        result = await truelink.resolve(link)
+                        completed_tasks = [result.get('formatted_output', str(result))]
+                    except Exception:
+                        # Fallback to Indian shortener
+                        try:
+                            result = await indian_shortener_bypass(link)
+                            completed_tasks = [result]
+                        except:
+                            completed_tasks = [await direct_link_checker(link)]
+                else:
+                    # Try Indian shortener bypass
+                    try:
+                        result = await indian_shortener_bypass(link)
+                        completed_tasks = [result]
+                    except:
+                        completed_tasks = [await direct_link_checker(link)]
             except:
                 completed_tasks = [await direct_link_checker(tlinks[0])]
         else:
@@ -158,7 +192,17 @@ async def inline_query(client, query):
         try:
             # Use enhanced bypass for inline queries
             try:
-                bp_link = await indian_shortener_bypass(link)
+                # Try TrueLink first for inline queries
+                truelink = get_truelink_bypass()
+                if truelink and truelink.is_supported(link):
+                    try:
+                        result = await truelink.resolve(link)
+                        bp_link = result.get('formatted_output', str(result))
+                    except Exception:
+                        # Fallback to Indian shortener
+                        bp_link = await indian_shortener_bypass(link)
+                else:
+                    bp_link = await indian_shortener_bypass(link)
             except:
                 bp_link = await direct_link_checker(link, onlylink=True)
             end = time()

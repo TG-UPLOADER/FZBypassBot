@@ -16,3 +16,4 @@ psutil
 fake-useragent
 selenium
 undetected-chromedriver
+truelink

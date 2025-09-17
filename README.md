@@ -28,6 +28,7 @@
 ## ***Features***
 - _Fastest written in Async with Speed Enhancers_
 - _Enhanced Bypass System with Smart Loop Detection_
+- _TrueLink Integration for Premium File Hosting Services_
 - _Universal Indian Shortener Support (100+ Sites)_
 - _Batch Processing for Multiple Links_
 - _Advanced Error Handling and Retry Mechanisms_
@@ -165,6 +166,23 @@
 |`ziplinker.net`|✅️| **29-04-2024**|
 |`zshort.io`|✅️| **27-01-2025**|
 
+### ***TrueLink Supported Sites***
+| __File Hosting Sites__ | __Status__ |__Last Updated__ |
+|:----------------------:|:----------:|:----------------:|
+|`buzzheavier.com`|✅️| **27-01-2025**|
+|`1fichier.com`|✅️| **27-01-2025**|
+|`fuckingfast.co`|✅️| **27-01-2025**|
+|`gofile.io`|✅️| **27-01-2025**|
+|`linkbox.to`|✅️| **27-01-2025**|
+|`lulacloud.com`|✅️| **27-01-2025**|
+|`mediafile.org`|✅️| **27-01-2025**|
+|`pixeldrain.com`|✅️| **27-01-2025**|
+|`streamtape.com`|✅️| **27-01-2025**|
+|`tmpsend.com`|✅️| **27-01-2025**|
+|`uploadee.com`|✅️| **27-01-2025**|
+|`yadi.sk` + `disk.yandex.com`|✅️| **27-01-2025**|
+|`ranoz.com`|✅️| **27-01-2025**|
+|`terabox.*` variants|✅️| **27-01-2025**|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |__Last Updated__ |

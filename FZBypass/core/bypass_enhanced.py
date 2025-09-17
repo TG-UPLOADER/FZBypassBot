@@ -17,6 +17,7 @@ from requests import Session, get as rget
 from FZBypass import Config, LOGGER
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
+from FZBypass.core.bypass_truelink import get_truelink_bypass, TRUELINK_PATTERNS
 
 
 class BypassSession:
@@ -281,6 +282,22 @@ async def single_bypass(url: str) -> str:
 
 async def direct_link_checker_enhanced(url: str) -> str:
     """Enhanced direct link checker with improved pattern matching"""
+    
+    # Priority 1: Try TrueLink for supported file hosting services
+    truelink = get_truelink_bypass()
+    if truelink:
+        # Check TrueLink patterns first
+        for pattern, service in TRUELINK_PATTERNS.items():
+            if match(pattern, url):
+                try:
+                    LOGGER.info(f"Attempting TrueLink bypass for {service}: {url}")
+                    result = await truelink.resolve(url)
+                    if result and result.get('download_url'):
+                        return result['formatted_output']
+                except Exception as e:
+                    LOGGER.warning(f"TrueLink {service} bypass failed: {e}")
+                    break  # Try other methods
+    
     domain = urlparse(url).hostname.lower()
     
     # Enhanced pattern matching with better error handling

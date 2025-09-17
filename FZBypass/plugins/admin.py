@@ -8,6 +8,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from FZBypass import Config, Bypass, BOT_START, LOGGER
 from FZBypass.core.bot_utils import convert_time
+from FZBypass.core.bypass_truelink import get_truelink_bypass, TRUELINK_AVAILABLE
 
 
 @Bypass.on_message(command("stats") & user(Config.OWNER_ID))
@@ -32,7 +33,8 @@ async def bot_stats(client, message):
 ┠ <b>TERA_COOKIE:</b> {'✅' if Config.TERA_COOKIE else '❌'}
 ┠ <b>DIRECT_INDEX:</b> {'✅' if Config.DIRECT_INDEX else '❌'}
 ┠ <b>LARAVEL_SESSION:</b> {'✅' if Config.LARAVEL_SESSION else '❌'}
-┗ <b>XSRF_TOKEN:</b> {'✅' if Config.XSRF_TOKEN else '❌'}
+┠ <b>XSRF_TOKEN:</b> {'✅' if Config.XSRF_TOKEN else '❌'}
+┗ <b>TRUELINK:</b> {'✅' if TRUELINK_AVAILABLE else '❌'}
 """
     
     await message.reply(
@@ -59,10 +61,19 @@ async def health_check(client, message):
     
     # Test bypass functionality
     try:
+        # Test TrueLink if available
+        truelink = get_truelink_bypass()
+        if truelink:
+            checks["TrueLink"] = "✅ Available"
+        else:
+            checks["TrueLink"] = "❌ Not Available"
+        
+        # Test general bypass
+        from FZBypass.core.bypass_enhanced import direct_link_checker_enhanced
         test_result = await direct_link_checker_enhanced("https://bit.ly/test")
-        checks["Bypass System"] = "✅ Working"
+        checks["General Bypass"] = "✅ Working"
     except:
-        checks["Bypass System"] = "⚠️ Limited functionality"
+        checks["General Bypass"] = "⚠️ Limited functionality"
     
     health_text = "<b>🏥 Health Check Results</b>\n\n"
     for check, status in checks.items():

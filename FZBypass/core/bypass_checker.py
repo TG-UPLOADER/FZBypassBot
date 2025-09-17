@@ -6,8 +6,10 @@ from FZBypass.core.bypass_ddl import *
 from FZBypass.core.bypass_scrape import *
 from FZBypass.core.bypass_enhanced import *
 from FZBypass.core.bypass_indian import *
+from FZBypass.core.bypass_truelink import get_truelink_bypass, truelink_resolver, TRUELINK_PATTERNS
 from FZBypass.core.bot_utils import get_dl
 from FZBypass.core.exceptions import DDLException
+from re import match
 
 fmed_list = [
     "fembed.net",
@@ -43,6 +45,22 @@ def is_excep_link(url):
 
 async def direct_link_checker(link, onlylink=False):
     """Enhanced direct link checker with improved error handling and performance"""
+    
+    # First try TrueLink for supported services
+    truelink = get_truelink_bypass()
+    if truelink and truelink.is_supported(link):
+        try:
+            LOGGER.info(f"Trying TrueLink bypass for: {link}")
+            result = await truelink_resolver(link)
+            if result and await validate_bypass_result(link, result):
+                return result if onlylink else [result]
+        except DDLException as e:
+            LOGGER.warning(f"TrueLink bypass failed for {link}: {e}")
+            # Continue to other bypass methods
+        except Exception as e:
+            LOGGER.error(f"TrueLink unexpected error for {link}: {e}")
+            # Continue to other bypass methods
+    
     try:
         # First try Indian shortener bypass
         result = await indian_shortener_bypass(link)
