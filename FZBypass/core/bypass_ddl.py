@@ -1,13 +1,12 @@
-from requests import post as rpost ,get as rget
+from requests import get as rget
 from re import findall, compile
-from time import sleep, time
 from asyncio import sleep as asleep
 from urllib.parse import quote, urlparse
 
 from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
 from curl_cffi.requests import Session as cSession
-from requests import Session, get as rget
+from requests import Session
 from aiohttp import ClientSession
 
 from FZBypass import Config
@@ -254,7 +253,7 @@ async def linksxyz(url: str):
 
 
 async def shareus(url: str) -> str:
-    DOMAIN = f"https://api.shrslink.xyz"
+    DOMAIN = "https://api.shrslink.xyz"
     code = url.split('/')[-1]
     headers = {
         'User-Agent':'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',

@@ -2,23 +2,17 @@
 Universal Indian Shortener Bypass Functions
 Comprehensive collection of Indian shortener bypass methods
 """
-from asyncio import sleep as asleep, timeout, TimeoutError
-from time import time, sleep
-from re import findall, match, search, sub, DOTALL
-from urllib.parse import urlparse, parse_qs, quote, unquote
-from uuid import uuid4
-from base64 import b64decode, b64encode
-from json import loads, dumps
+from asyncio import sleep as asleep, TimeoutError
+from re import findall, match, search, DOTALL
+from urllib.parse import urlparse
+from json import loads
 from random import choice, randint
 
 from bs4 import BeautifulSoup
-from cloudscraper import create_scraper
 from aiohttp import ClientSession, ClientTimeout
-from requests import Session, get as rget, post as rpost
 
-from FZBypass import Config, LOGGER
+from FZBypass import LOGGER
 from FZBypass.core.exceptions import DDLException
-from FZBypass.core.recaptcha import recaptchaV3
 
 
 class IndianBypassSession:

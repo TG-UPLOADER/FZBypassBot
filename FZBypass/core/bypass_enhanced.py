@@ -2,17 +2,12 @@
 Enhanced bypass functions with better error handling and performance
 """
 from asyncio import create_task, gather, sleep as asleep, timeout, TimeoutError
-from time import time
-from re import findall, match, search, sub, DOTALL
-from urllib.parse import urlparse, parse_qs, quote
-from uuid import uuid4
-from base64 import b64decode
+from re import match, search
+from urllib.parse import urlparse
 from json import loads
 
 from bs4 import BeautifulSoup
-from cloudscraper import create_scraper
 from aiohttp import ClientSession, ClientTimeout
-from requests import Session, get as rget
 
 from FZBypass import Config, LOGGER
 from FZBypass.core.exceptions import DDLException
@@ -366,7 +361,7 @@ async def smart_loop_bypass(url: str, max_depth=5) -> list:
             else:
                 break
                 
-        except Exception as e:
+        except Exception:
             if depth == 0:
                 raise  # Re-raise if first bypass fails
             break  # Stop loop if subsequent bypass fails

@@ -3,8 +3,7 @@ TrueLink Integration for Enhanced File Hosting Bypass
 Supports: BuzzHeavier, 1Fichier, FuckingFast, GoFile, LinkBox, LulaCloud, 
 MediaFile, MediaFire, PixelDrain, StreamTape, TeraBox, TmpSend, UploadEE, YandexLink, Ranoz
 """
-import asyncio
-from typing import Optional, Dict, Any
+from typing import Dict, Any
 from urllib.parse import urlparse
 
 from FZBypass import LOGGER
@@ -150,7 +149,7 @@ class TrueLinkBypass:
         if download_url:
             output += f"┗ <b>Download:</b> <a href='{download_url}'>Direct Link</a>"
         else:
-            output += f"┗ <b>Status:</b> Processing..."
+            output += "┗ <b>Status:</b> Processing..."
         
         return output
 

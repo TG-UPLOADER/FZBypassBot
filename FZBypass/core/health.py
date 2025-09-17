@@ -2,12 +2,12 @@
 Health check and monitoring utilities
 """
 from time import time
-from asyncio import create_task, gather, timeout, TimeoutError
+from asyncio import timeout, TimeoutError
 from typing import Dict, Any
 import psutil
 from os import getpid
 
-from FZBypass import Config, LOGGER
+from FZBypass import Config
 from FZBypass.core.bypass_enhanced import direct_link_checker_enhanced
 
 
